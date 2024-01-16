@@ -13,7 +13,7 @@ public class SerialHandler : MonoBehaviour
     //Linuxでは/dev/ttyUSB0
     //windowsではCOM1
     //Macでは/dev/tty.usbmodem1421など
-    [SerializeField] string portName;
+    [SerializeField] string portName = "COM";
     [SerializeField] int baudRate    = 9600;
 
     private SerialPort serialPort_;
@@ -56,8 +56,10 @@ public class SerialHandler : MonoBehaviour
 
         isRunning_ = true;
 
+        /* スレッドがうまく終了しないためコメントアウト
         thread_ = new Thread(Read);
         thread_.Start();
+        */
     }
 
     /*
