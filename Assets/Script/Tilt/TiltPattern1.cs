@@ -4,21 +4,27 @@ using UnityEngine;
 
 
 // 平面オブジェクトを矢印キー操作によってオイラーで回転させるスクリプト
-public class TiltFloor : MonoBehaviour
+public class TiltPattern1 : MonoBehaviour
 {
     // SerialHandlerクラス
     public SerialHandler serialHandler;
+    // csv記述
+    GameObject csv1;
+    Csv1 saveCsv;
     // Arduinoに送信するデータ　形式:Xnum,num,num,num,num, (X==T/F num==move_ms num...num==act_UpDown)
 
     [SerializeField] GameObject gameObject;
-    [SerializeField]  char rotate_direction = 'w'; // 回転の内部情報(w,a,s,d)　人間の向いてる方向を基準にして、前に傾くならw
+    //[SerializeField]  char rotate_direction = 'w'; // 回転の内部情報(w,a,s,d)　人間の向いてる方向を基準にして、前に傾くならw
     private float change_deg = 0; // 現在の角度移動量
     private float target_deg = 0; // 目標回転量
     private bool isMoving = false; // true で回転描画
 
+
     // Start is called before the first frame update
     void Start()
     {
+        csv1 = GameObject.Find("csv");
+        saveCsv = csv1.GetComponent<Csv1>();
 
     }
 
@@ -32,6 +38,7 @@ public class TiltFloor : MonoBehaviour
             setDeg(3.00f);
             // シリアル送信
             serialHandler.Write("F45,-1,1,1,-1,");
+            saveCsv.SaveData("1");
             Debug.Log("serial 1deg");
 
         }
@@ -40,6 +47,7 @@ public class TiltFloor : MonoBehaviour
         {
             setDeg(3.00f);
             serialHandler.Write("F90,-1,1,1,-1,");
+            saveCsv.SaveData("2");
             Debug.Log("serial 2deg");
         }
         // 2.5deg
@@ -47,6 +55,7 @@ public class TiltFloor : MonoBehaviour
         {
             setDeg(3.00f);
             serialHandler.Write("F120,-1,1,1,-1,");
+            saveCsv.SaveData("2.5");
             Debug.Log("serial 2.5deg");
         }
         // 3deg
@@ -54,6 +63,7 @@ public class TiltFloor : MonoBehaviour
         {
             setDeg(3.00f);
             serialHandler.Write("F145,-1,1,1,-1,");
+            saveCsv.SaveData("3");
             Debug.Log("serial 3deg");
         }
         // 3.5deg
@@ -61,6 +71,7 @@ public class TiltFloor : MonoBehaviour
         {
             setDeg(3.00f);
             serialHandler.Write("F160,-1,1,1,-1,");
+            saveCsv.SaveData("3.5");
             Debug.Log("serial 3.5deg");
         }
         //4deg
@@ -68,6 +79,7 @@ public class TiltFloor : MonoBehaviour
         {
             setDeg(3.00f);
             serialHandler.Write("F180,-1,1,1,-1,");
+            saveCsv.SaveData("4");
             Debug.Log("serial 4deg");
         }
         //5deg
@@ -75,6 +87,7 @@ public class TiltFloor : MonoBehaviour
         {
             setDeg(3.00f);
             serialHandler.Write("F215,-1,1,1,-1,");
+            saveCsv.SaveData("5");
             Debug.Log("serial 5deg");
         }
 
@@ -120,6 +133,7 @@ public class TiltFloor : MonoBehaviour
             serialHandler.Write("T");
         }
 
+        /*
         // 回転方向
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -141,6 +155,7 @@ public class TiltFloor : MonoBehaviour
             rotate_direction = 'd';
             Debug.Log("change d");
         }
+        */
 
     }
 
@@ -150,8 +165,10 @@ public class TiltFloor : MonoBehaviour
         isMoving = true;
     }
 
+    /*
     public char getWASD()
     {
         return this.rotate_direction;
     }
+    */
 }

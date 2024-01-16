@@ -6,17 +6,21 @@ public class TiltPattern2 : MonoBehaviour
 {
     // SerialHandlerクラス
     public SerialHandler serialHandler;
+    // csv記述
+    GameObject csv2;
+    Csv2 saveCsv;
     // Arduinoに送信するデータ　形式:Xnum,num,num,num,num, (X==T/F num==move_ms num...num==act_UpDown)
 
     [SerializeField] GameObject gameObject;
-    [SerializeField] private char rotate_direction = 'w'; // 回転の内部情報(w,a,s,d)　人間の向いてる方向を基準にして、前に傾くならw
+    //[SerializeField] private char rotate_direction = 'w'; // 回転の内部情報(w,a,s,d)　人間の向いてる方向を基準にして、前に傾くならw
     private float change_deg = 0; // 現在の角度移動量
     private float target_deg = 0; // 目標回転量
     private bool isMoving = false; // true で回転描画
 
     void Start()
     {
-        
+        csv2 = GameObject.Find("csv");
+        saveCsv = csv2.GetComponent<Csv2>();
     }
 
     // Update is called once per frame
@@ -29,6 +33,7 @@ public class TiltPattern2 : MonoBehaviour
             setDeg(3.00f);
             // シリアル送信
             serialHandler.Write("F45,1,-1,-1,1,");
+            saveCsv.SaveData("2");
             Debug.Log("serial 2deg");
 
         }
@@ -37,6 +42,7 @@ public class TiltPattern2 : MonoBehaviour
         {
             setDeg(3.00f);
             serialHandler.Write("F90,1,-1,-1,1,");
+            saveCsv.SaveData("1");
             Debug.Log("serial 1deg");
         }
         // 0.5deg
@@ -44,6 +50,7 @@ public class TiltPattern2 : MonoBehaviour
         {
             setDeg(3.00f);
             serialHandler.Write("F120,1,-1,-1,1,");
+            saveCsv.SaveData("0.5");
             Debug.Log("serial 0.5deg");
         }
         // 0deg
@@ -51,6 +58,7 @@ public class TiltPattern2 : MonoBehaviour
         {
             setDeg(3.00f);
             serialHandler.Write("F145,1,-1,-1,1,");
+            saveCsv.SaveData("0");
             Debug.Log("serial 0deg");
         }
         // -0.5deg
@@ -58,6 +66,7 @@ public class TiltPattern2 : MonoBehaviour
         {
             setDeg(3.00f);
             serialHandler.Write("F160,1,-1,-1,1,");
+            saveCsv.SaveData("-0.5");
             Debug.Log("serial -0.5deg");
         }
         // -1deg
@@ -65,6 +74,7 @@ public class TiltPattern2 : MonoBehaviour
         {
             setDeg(3.00f);
             serialHandler.Write("F180,1,-1,-1,1,");
+            saveCsv.SaveData("-1");
             Debug.Log("serial -1deg");
         }
         // -2deg
@@ -72,6 +82,7 @@ public class TiltPattern2 : MonoBehaviour
         {
             setDeg(3.00f);
             serialHandler.Write("F215,1,-1,-1,1,");
+            saveCsv.SaveData("-2");
             Debug.Log("serial -2deg");
         }
 
@@ -98,6 +109,7 @@ public class TiltPattern2 : MonoBehaviour
             serialHandler.Write("T");
         }
 
+        /*
         // 回転方向
         if (Input.GetKeyDown(KeyCode.W))
         {
@@ -119,6 +131,7 @@ public class TiltPattern2 : MonoBehaviour
             rotate_direction = 'd';
             Debug.Log("change d");
         }
+        */
 
     }
 
@@ -129,8 +142,10 @@ public class TiltPattern2 : MonoBehaviour
         isMoving = true;
     }
 
+    /*
     public char getWASD()
     {
         return this.rotate_direction;
     }
+    */
 }
