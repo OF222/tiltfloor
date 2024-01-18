@@ -54,7 +54,7 @@ public class TiltPattern1 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             setDeg(3.00f);
-            serialHandler.Write("F120,-1,1,1,-1,");
+            serialHandler.Write("F110,-1,1,1,-1,");
             saveCsv.SaveData("2.5");
             Debug.Log("serial 2.5deg");
         }
@@ -94,7 +94,7 @@ public class TiltPattern1 : MonoBehaviour
         // 回転動作
         if (isMoving == true)
         {
-            
+
             /* 実験参加者が傾斜装置の上で回転したらよい
             switch (rotate_direction)
             {
@@ -113,7 +113,7 @@ public class TiltPattern1 : MonoBehaviour
 
             }
             */
-            gameObject.transform.Rotate( target_deg * Time.deltaTime, 0, 0);
+            gameObject.transform.Rotate(target_deg * Time.deltaTime, 0, 0);
             change_deg += target_deg * Time.deltaTime; // 角度更新
 
             // 角度に到達したら回転終了

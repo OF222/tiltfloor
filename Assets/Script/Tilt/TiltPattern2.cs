@@ -41,7 +41,7 @@ public class TiltPattern2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha2))
         {
             setDeg(3.00f);
-            serialHandler.Write("F90,1,-1,-1,1,");
+            serialHandler.Write("F85,1,-1,-1,1,");
             saveCsv.SaveData("1");
             Debug.Log("serial 1deg");
         }
@@ -49,7 +49,7 @@ public class TiltPattern2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha3))
         {
             setDeg(3.00f);
-            serialHandler.Write("F120,1,-1,-1,1,");
+            serialHandler.Write("F103,1,-1,-1,1,");
             saveCsv.SaveData("0.5");
             Debug.Log("serial 0.5deg");
         }
@@ -57,7 +57,7 @@ public class TiltPattern2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha4))
         {
             setDeg(3.00f);
-            serialHandler.Write("F145,1,-1,-1,1,");
+            serialHandler.Write("F125,1,-1,-1,1,");
             saveCsv.SaveData("0");
             Debug.Log("serial 0deg");
         }
@@ -65,7 +65,7 @@ public class TiltPattern2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha5))
         {
             setDeg(3.00f);
-            serialHandler.Write("F160,1,-1,-1,1,");
+            serialHandler.Write("F140,1,-1,-1,1,");
             saveCsv.SaveData("-0.5");
             Debug.Log("serial -0.5deg");
         }
@@ -73,7 +73,7 @@ public class TiltPattern2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha6))
         {
             setDeg(3.00f);
-            serialHandler.Write("F180,1,-1,-1,1,");
+            serialHandler.Write("F160,1,-1,-1,1,");
             saveCsv.SaveData("-1");
             Debug.Log("serial -1deg");
         }
@@ -81,7 +81,7 @@ public class TiltPattern2 : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Alpha7))
         {
             setDeg(3.00f);
-            serialHandler.Write("F215,1,-1,-1,1,");
+            serialHandler.Write("F197,1,-1,-1,1,");
             saveCsv.SaveData("-2");
             Debug.Log("serial -2deg");
         }
@@ -89,7 +89,7 @@ public class TiltPattern2 : MonoBehaviour
         // âÒì]ìÆçÏ
         if (isMoving == true)
         {
-            gameObject.transform.Rotate(-(target_deg * Time.deltaTime) , 0, 0);
+            gameObject.transform.Rotate(-(target_deg * Time.deltaTime), 0, 0);
             change_deg += target_deg * Time.deltaTime; // äpìxçXêV
 
             // äpìxÇ…ìûíBÇµÇΩÇÁâÒì]èIóπ

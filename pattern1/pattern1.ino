@@ -26,10 +26,10 @@ void(*resetFunc)(void) = 0;
 */
 
 // 最終的な各電圧に掛ける調整係数
-int Avol_coefficient = 1; // A以外を遅くして調整(20240109現在)
-int Bvol_coefficien = 0.98;
-int Cvol_coefficien = 0.98;
-int Dvol_coefficien = 0.98;
+float Avol_coefficient = 1; // B,Dを遅くして調整(20240117現在)
+float Bvol_coefficient = 0.98;
+float Cvol_coefficient = 0.98;
+float Dvol_coefficient = 0.98;
 // 各アクチュエータ電圧
 int Avol;
 int Bvol;
@@ -70,10 +70,10 @@ void setup() {
     act_UpDown[i] = 0;
   }
   // 各アクチュエータ電圧
-  Avol = 0;
-  Bvol = 0;
-  Cvol = 0;
-  Dvol = 0;
+  Avol = 255*Avol_coefficient;
+  Bvol = 255*Bvol_coefficient;
+  Cvol = 255*Cvol_coefficient;
+  Dvol = 255*Dvol_coefficient;
 
   // ピンの設定
   // A
@@ -124,11 +124,11 @@ void setup() {
   analogWrite(ARPWM, 0);
   analogWrite(ALPWM, 255);
   analogWrite(BRPWM, 0);
-  analogWrite(BLPWM, 247);
+  analogWrite(BLPWM, 249);
   analogWrite(CRPWM, 0);
-  analogWrite(CLPWM, 247);
+  analogWrite(CLPWM, 255);
   analogWrite(DRPWM, 0);
-  analogWrite(DLPWM, 247);
+  analogWrite(DLPWM, 249);
   delay(reset_ms);
 
   analogWrite(ARPWM, 0);
